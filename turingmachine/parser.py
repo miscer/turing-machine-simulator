@@ -33,8 +33,16 @@ def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
     start_state = None
     all_states = set()
 
-    header, states_count_string = file.readline().split()
-    states_count = int(states_count_string)
+    try:
+        line = file.readline()
+        header, states_count_string = line.split()
+    except ValueError:
+        raise ParseError('Invalid states header format: {}'.format(line))
+
+    try:
+        states_count = int(states_count_string)
+    except ValueError:
+        raise ParseError('Invalid number of states: {}'.format(states_count_string))
 
     if header != 'states':
         raise ParseError('Expected states header, got {}'.format(header))
@@ -43,7 +51,10 @@ def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
         raise ParseError('The machine has to have at least 2 states')
 
     for _ in range(states_count):
-        state, *accept_reject = file.readline().split()
+        try:
+            state, *accept_reject = file.readline().split()
+        except ValueError:
+            raise ParseError('Invalid state row')
 
         if state not in all_states:
             all_states.add(state)
@@ -78,8 +89,16 @@ def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
 def parse_alphabet(file: TextIO) -> Set[AlphabetLetter]:
     alphabet = set()
 
-    header, alphabet_size_string, *alphabet_letters = file.readline().split()
-    alphabet_size = int(alphabet_size_string)
+    try:
+        line = file.readline()
+        header, alphabet_size_string, *alphabet_letters = line.split()
+    except ValueError:
+        raise ParseError('Invalid alphabet line: {}'.format(line))
+
+    try:
+        alphabet_size = int(alphabet_size_string)
+    except ValueError:
+        raise ParseError('Invalid alphabet size: {}'.format(alphabet_size_string))
 
     if header != 'alphabet':
         raise ParseError('Expected alphabet header, got {}'.format(header))
@@ -102,13 +121,9 @@ def parse_transition_table(file: TextIO, states: Set[State], alphabet: Set[Alpha
     for _ in range(table_rows_count):
         try:
             line = file.readline()
-        except StopIteration:
-            line = ''
-
-        if not line:
-            raise ParseError('Not enough transition table rows')
-
-        in_state, in_letter, out_state, out_letter, direction = line.split()
+            in_state, in_letter, out_state, out_letter, direction = line.split()
+        except ValueError:
+            raise ParseError('Invalid transition table row: {}'.format(line))
 
         table_key = (in_state, parse_letter(in_letter, alphabet))
         table_value = (out_state, parse_letter(out_letter, alphabet), parse_direction(direction))

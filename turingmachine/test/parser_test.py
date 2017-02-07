@@ -54,6 +54,12 @@ def test_parse_states():
     with open_mock_file(['foo 4', 'q0', 'q1', 'qa +', 'qr -']) as file, pytest.raises(ParseError):
         parse_states(file)
 
+    with open_mock_file(['states']) as file, pytest.raises(ParseError):
+        parse_states(file)
+
+    with open_mock_file(['states bar']) as file, pytest.raises(ParseError):
+        parse_states(file)
+
 
 def test_parse_alphabet():
     with open_mock_file(['alphabet 2 a b']) as file:
@@ -69,6 +75,12 @@ def test_parse_alphabet():
         parse_alphabet(file)
 
     with pytest.raises(ParseError), open_mock_file(['foo 2 a b']) as file:
+        parse_alphabet(file)
+
+    with pytest.raises(ParseError), open_mock_file(['alphabet']) as file:
+        parse_alphabet(file)
+
+    with pytest.raises(ParseError), open_mock_file(['alphabet foo']) as file:
         parse_alphabet(file)
 
 
@@ -91,7 +103,10 @@ def test_parse_transition_table():
         }
 
     with open_mock_file([
-        'q0 a q0 a R'
+        'q0 a q0 a R',
+        'q0 _ qr',
+        'q1 a qr a L',
+        'q1 _ qa _ L'
     ]) as file, pytest.raises(ParseError):
         parse_transition_table(file, {'q0', 'q1', 'qa', 'qr'}, {'a'})
 
