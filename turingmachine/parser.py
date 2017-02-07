@@ -5,18 +5,26 @@ from turingmachine.turing_machine import TuringMachine
 from turingmachine.types import Direction, TapeLetter, State, AlphabetLetter, TransitionTable
 
 
+class ParseError(Exception):
+    pass
+
+
 def parse_direction(direction: str) -> Direction:
     if direction == 'L':
         return Direction.left
     elif direction == 'R':
         return Direction.right
+    else:
+        raise ParseError('Invalid direction: {}'.format(direction))
 
 
-def parse_letter(letter: str) -> TapeLetter:
+def parse_letter(letter: str, alphabet: Set[AlphabetLetter]) -> TapeLetter:
     if letter == '_':
         return None
-    else:
+    elif letter in alphabet:
         return letter
+    else:
+        raise ParseError('Invalid letter: {}'.format(letter))
 
 
 def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
@@ -25,19 +33,44 @@ def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
     start_state = None
     all_states = set()
 
-    _, states_count = file.readline().split()
+    header, states_count_string = file.readline().split()
+    states_count = int(states_count_string)
 
-    for _ in range(int(states_count)):
+    if header != 'states':
+        raise ParseError('Expected states header, got {}'.format(header))
+
+    if states_count < 2:
+        raise ParseError('The machine has to have at least 2 states')
+
+    for _ in range(states_count):
         state, *accept_reject = file.readline().split()
-        all_states.add(state)
+
+        if state not in all_states:
+            all_states.add(state)
+        else:
+            raise ParseError('Duplicate state: {}'.format(state))
 
         if start_state is None:
             start_state = state
 
         if accept_reject == ['+']:
-            accept_state = state
+            if accept_state is None:
+                accept_state = state
+            else:
+                raise ParseError('Multiple accept states: {}'.format(state))
         elif accept_reject == ['-']:
-            reject_state = state
+            if reject_state is None:
+                reject_state = state
+            else:
+                raise ParseError('Multiple reject states: {}'.format(state))
+        elif accept_reject:
+            raise ParseError("Invalid state modifier: {}".format(accept_reject))
+
+    if accept_state is None:
+        raise ParseError("Missing accept state")
+
+    if reject_state is None:
+        raise ParseError("Missing reject state")
 
     return accept_state, reject_state, start_state, all_states
 
@@ -45,8 +78,19 @@ def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
 def parse_alphabet(file: TextIO) -> Set[AlphabetLetter]:
     alphabet = set()
 
-    _, _, *alphabet_letters = file.readline().split()
+    header, alphabet_size_string, *alphabet_letters = file.readline().split()
+    alphabet_size = int(alphabet_size_string)
+
+    if header != 'alphabet':
+        raise ParseError('Expected alphabet header, got {}'.format(header))
+
+    if alphabet_size < 1 or alphabet_size != len(alphabet_letters):
+        raise ParseError('Invalid alphabet size: {}'.format(alphabet_size))
+
     alphabet.update(alphabet_letters)
+
+    if len(alphabet) != len(alphabet_letters):
+        raise ParseError('Duplicate letters in the alphabet')
 
     return alphabet
 
@@ -56,16 +100,23 @@ def parse_transition_table(file: TextIO, states: Set[State], alphabet: Set[Alpha
     table_rows_count = (len(states) - 2) * (len(alphabet) + 1)
 
     for _ in range(table_rows_count):
-        in_state, in_letter, out_state, out_letter, direction = file.readline().split()
+        try:
+            line = file.readline()
+        except StopIteration:
+            line = ''
 
-        transition_table[(
-            in_state,
-            parse_letter(in_letter)
-        )] = (
-            out_state,
-            parse_letter(out_letter),
-            parse_direction(direction)
-        )
+        if not line:
+            raise ParseError('Not enough transition table rows')
+
+        in_state, in_letter, out_state, out_letter, direction = line.split()
+
+        table_key = (in_state, parse_letter(in_letter, alphabet))
+        table_value = (out_state, parse_letter(out_letter, alphabet), parse_direction(direction))
+
+        if table_key not in transition_table:
+            transition_table[table_key] = table_value
+        else:
+            raise ParseError('Duplicate transition table row: {}, {}'.format(in_state, in_letter))
 
     return transition_table
 
