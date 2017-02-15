@@ -1,0 +1,40 @@
+states 8
+q0
+q1
+q2
+q3
+q4
+q5
+qa +
+qr -
+alphabet 4 a b A B
+q0 a q1 A R
+q0 b q3 B R
+q0 A qa A R
+q0 B qa B R
+q0 _ qa _ R
+q1 a q1 a R
+q1 b q1 b R
+q1 A q2 A L
+q1 B q2 B L
+q1 _ q2 _ L
+q2 a q5 A L
+q2 b qr b R
+q2 A qa A R
+q2 B qr B R
+q2 _ qr _ R
+q3 a q3 a R
+q3 b q3 b R
+q3 A q4 A L
+q3 B q4 B L
+q3 _ q4 _ L
+q4 a qr a R
+q4 b q5 B L
+q4 A qr A R
+q4 B qa B R
+q4 _ qr _ R
+q5 a q5 a L
+q5 b q5 b L
+q5 A q0 A R
+q5 B q0 B R
+q5 _ qa _ R
