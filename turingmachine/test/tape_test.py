@@ -32,6 +32,12 @@ def test_write_negative():
     with pytest.raises(IndexError):
         tape.write(-1, 'a')
 
+def tape_list():
+    tape = Tape(list('foo'))
+    tape.write(4, 'a')
+
+    assert tape.list() == ['f', 'o', 'o', None, 'a']
+
 def test_str():
     tape = Tape(list('foobar'))
     tape.write(8, None)

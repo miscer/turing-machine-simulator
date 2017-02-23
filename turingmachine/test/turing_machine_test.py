@@ -16,5 +16,5 @@ def test_turing_machine():
     transition_fn = create_transition_fn(table)
     machine = TuringMachine('q0', 'qa', 'qr', transition_fn)
 
-    assert machine.run(list('aab'))
-    assert not machine.run(list('aba'))
+    assert (True, list('aabb')) == machine.run(list('aab'))
+    assert (False, list('aba')) == machine.run(list('aba'))

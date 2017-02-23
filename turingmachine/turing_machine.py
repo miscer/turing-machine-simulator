@@ -1,9 +1,9 @@
 import os
-from typing import List
+from typing import List, Tuple
 
 from turingmachine.head import Head
 from turingmachine.tape import Tape
-from turingmachine.types import AlphabetLetter, State, TransitionFunction
+from turingmachine.types import AlphabetLetter, State, TransitionFunction, TapeLetter
 
 _debug = "TM_DEBUG" in os.environ
 
@@ -18,7 +18,7 @@ class TuringMachine:
         self.reject_state = reject_state
         self.transition_fn = transition_fn
 
-    def run(self, input_word: List[AlphabetLetter]) -> bool:
+    def run(self, input_word: List[AlphabetLetter]) -> Tuple[bool, List[TapeLetter]]:
         head = Head()
         tape = Tape(input_word)
         current_state = self.start_state
@@ -41,4 +41,4 @@ class TuringMachine:
 
             current_state = next_state
 
-        return current_state == self.accept_state
+        return current_state == self.accept_state, tape.list()

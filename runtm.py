@@ -1,6 +1,7 @@
 import argparse
 
 from turingmachine.parser import parse_turing_machine, ParseError
+from turingmachine.tape import tape_list_to_string
 
 parser = argparse.ArgumentParser(description='Runs the given Turing machine on the input')
 parser.add_argument('machine', help='machine description file')
@@ -21,11 +22,13 @@ else:
     with open(arguments.input) as input_file:
         input_word = list(input_file.read().strip())
 
-accepted = turing_machine.run(input_word)
+accepted, tape = turing_machine.run(input_word)
 
 if accepted:
     print('Accepted')
+    print(tape_list_to_string(tape))
     exit(0)
 else:
     print('Rejected')
+    print(tape_list_to_string(tape))
     exit(1)
