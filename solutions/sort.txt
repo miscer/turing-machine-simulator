@@ -1,0 +1,28 @@
+states 6
+s0
+s1
+s2
+s3
+sa +
+sr -
+alphabet 4 1 2 a b
+s0 1 s0 a R
+s0 2 s1 b R
+s0 a sr a R
+s0 b sr b R
+s0 _ sa _ R
+s1 1 s2 2 L
+s1 2 s1 2 R
+s1 a sr a R
+s1 b sr b R
+s1 _ s3 _ L
+s2 1 sr 1 R
+s2 2 s2 2 L
+s2 a sr a R
+s2 b s0 a R
+s2 _ sr _ R
+s3 1 sr 1 R
+s3 2 s3 b L
+s3 a sr a R
+s3 b sa b R
+s3 _ sr _ R
