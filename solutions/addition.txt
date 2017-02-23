@@ -1,0 +1,204 @@
+states 27
+s0
+s10
+s11
+s12
+s13
+s14
+s15
+s16
+s17
+s18
+s19
+s20
+s21
+s22
+s23
+s24
+s25
+s30
+s31
+s32
+s50
+s51
+s52
+s53
+s54
+sa +
+sr -
+alphabet 6 0 1 o i # &
+s0 0 s10 o R
+s0 1 s11 i R
+s0 o sr o R
+s0 i sr i R
+s0 # s50 # R
+s0 & sr & R
+s0 _ sr _ R
+s10 0 s10 0 R
+s10 1 s10 1 R
+s10 o sr o R
+s10 i sr i R
+s10 # s12 # R
+s10 & sr & R
+s10 _ sr _ R
+s11 0 s11 0 R
+s11 1 s11 1 R
+s11 o sr o R
+s11 i sr i R
+s11 # s13 # R
+s11 & sr & R
+s11 _ sr _ R
+s12 0 s14 o R
+s12 1 s15 i R
+s12 o s12 o R
+s12 i s12 i R
+s12 # s18 # R
+s12 & s22 # R
+s12 _ sr _ R
+s13 0 s16 o R
+s13 1 s17 i R
+s13 o s13 o R
+s13 i s13 i R
+s13 # s20 # R
+s13 & s24 & R
+s13 _ sr _ R
+s14 0 s14 0 R
+s14 1 s14 1 R
+s14 o sr o R
+s14 i sr i R
+s14 # s18 # R
+s14 & s22 # R
+s14 _ sr _ R
+s15 0 s15 0 R
+s15 1 s15 1 R
+s15 o sr o R
+s15 i sr i R
+s15 # s19 # R
+s15 & s23 & R
+s15 _ sr _ R
+s16 0 s16 0 R
+s16 1 s16 1 R
+s16 o sr o R
+s16 i sr i R
+s16 # s20 # R
+s16 & s24 & R
+s16 _ sr _ R
+s17 0 s17 0 R
+s17 1 s17 1 R
+s17 o sr o R
+s17 i sr i R
+s17 # s21 & R
+s17 & s25 & R
+s17 _ sr _ R
+s18 0 s30 o L
+s18 1 sr 1 R
+s18 o s18 o R
+s18 i s18 i R
+s18 # sr # R
+s18 & sr & R
+s18 _ sr _ R
+s19 0 sr 0 R
+s19 1 s30 i L
+s19 o s19 o R
+s19 i s19 i R
+s19 # sr # R
+s19 & sr & R
+s19 _ sr _ R
+s20 0 sr 0 R
+s20 1 s30 i L
+s20 o s20 o R
+s20 i s20 i R
+s20 # sr # R
+s20 & sr & R
+s20 _ sr _ R
+s21 0 s30 o L
+s21 1 sr 1 R
+s21 o s21 o R
+s21 i s21 i R
+s21 # sr # R
+s21 & sr & R
+s21 _ sr _ R
+s22 0 sr 0 R
+s22 1 s30 i L
+s22 o s22 o R
+s22 i s22 i R
+s22 # sr # R
+s22 & sr & R
+s22 _ sr _ R
+s23 0 s30 o L
+s23 1 sr 1 R
+s23 o s23 o R
+s23 i s23 i R
+s23 # sr # R
+s23 & sr & R
+s23 _ sr _ R
+s24 0 s30 o L
+s24 1 sr 1 R
+s24 o s24 o R
+s24 i s24 i R
+s24 # sr # R
+s24 & sr & R
+s24 _ sr _ R
+s25 0 sr 0 R
+s25 1 s30 i L
+s25 o s25 o R
+s25 i s25 i R
+s25 # sr # R
+s25 & sr & R
+s25 _ sr _ R
+s30 0 s30 0 L
+s30 1 s30 1 L
+s30 o s30 o L
+s30 i s30 i L
+s30 # s31 # L
+s30 & s31 & L
+s30 _ sr _ R
+s31 0 s31 0 L
+s31 1 s31 1 L
+s31 o s31 o L
+s31 i s31 i L
+s31 # s32 # L
+s31 & sr & R
+s31 _ sr _ R
+s32 0 s32 0 L
+s32 1 s32 1 L
+s32 o s0 o R
+s32 i s0 i R
+s32 # sr # R
+s32 & sr & R
+s32 _ sr _ R
+s50 0 s14 o R
+s50 1 s15 i R
+s50 o s50 o R
+s50 i s50 i R
+s50 # s51 # R
+s50 & s52 & R
+s50 _ sr _ R
+s51 0 s54 0 R
+s51 1 sr 1 R
+s51 o s51 o R
+s51 i s51 i R
+s51 # sr # R
+s51 & sr & R
+s51 _ sa _ R
+s52 0 sr 0 R
+s52 1 s53 i R
+s52 o s51 o R
+s52 i s51 i R
+s52 # sr # R
+s52 & sr & R
+s52 _ sr _ R
+s53 0 sr 0 R
+s53 1 sr 1 R
+s53 o sr o R
+s53 i sr i R
+s53 # sr # R
+s53 & sr & R
+s53 _ sa _ R
+s54 0 s54 o R
+s54 1 sr 1 R
+s54 o sr o R
+s54 i sr i R
+s54 # sr # R
+s54 & sr & R
+s54 _ sa _ R
