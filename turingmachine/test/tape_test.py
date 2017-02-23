@@ -34,4 +34,6 @@ def test_write_negative():
 
 def test_str():
     tape = Tape(list('foobar'))
-    assert str(tape) == 'foobar'
+    tape.write(8, None)
+
+    assert str(tape) == 'foobar___'

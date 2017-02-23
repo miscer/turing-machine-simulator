@@ -20,10 +20,15 @@ class Tape:
             raise IndexError('Position {} is out of range'.format(position))
 
     def __str__(self) -> str:
-        num_cells = len(self.tape)
+        max_cell = max(self.tape.keys())
         tape_string = str()
 
-        for n in range(num_cells):
-            tape_string += self.tape.get(n)
+        for n in range(max_cell + 1):
+            letter = self.tape.get(n)
+
+            if letter is not None:
+                tape_string += letter
+            else:
+                tape_string += '_'
 
         return tape_string
