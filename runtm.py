@@ -15,8 +15,11 @@ with open(arguments.machine) as machine_file:
         print(str(error))
         exit(2)
 
-with open(arguments.input) as input_file:
-    input_word = list(input_file.read().strip())
+if arguments.input == '-':
+    input_word = input('> ')
+else:
+    with open(arguments.input) as input_file:
+        input_word = list(input_file.read().strip())
 
 accepted = turing_machine.run(input_word)
 
