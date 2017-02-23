@@ -1,9 +1,11 @@
+import os
 from typing import List
 
 from turingmachine.head import Head
 from turingmachine.tape import Tape
 from turingmachine.types import AlphabetLetter, State, TransitionFunction
 
+_debug = "TM_DEBUG" in os.environ
 
 class TuringMachine:
     def __init__(self,
@@ -22,6 +24,15 @@ class TuringMachine:
         current_state = self.start_state
 
         while current_state not in [self.accept_state, self.reject_state]:
+            if _debug:
+                tape_string = str(tape)
+
+                print(
+                    tape_string[:head.position],
+                    current_state,
+                    tape_string[head.position:]
+                )
+
             read_letter = tape.read(head.position)
             next_state, written_letter, direction = self.transition_fn(current_state, read_letter)
 

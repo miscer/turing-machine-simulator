@@ -31,3 +31,7 @@ def test_write_negative():
 
     with pytest.raises(IndexError):
         tape.write(-1, 'a')
+
+def test_str():
+    tape = Tape(list('foobar'))
+    assert str(tape) == 'foobar'

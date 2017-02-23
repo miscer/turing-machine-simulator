@@ -18,3 +18,12 @@ class Tape:
     def _check_position(self, position: int) -> None:
         if position < 0:
             raise IndexError('Position {} is out of range'.format(position))
+
+    def __str__(self) -> str:
+        num_cells = len(self.tape)
+        tape_string = str()
+
+        for n in range(num_cells):
+            tape_string += self.tape.get(n)
+
+        return tape_string
