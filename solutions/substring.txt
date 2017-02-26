@@ -1,0 +1,109 @@
+states 17
+s0
+s1
+s2
+s3
+s4
+s5
+s6
+s7
+s8
+s9
+s10
+s11
+s12
+s13
+s14
+sa +
+sr -
+alphabet 5 0 1 o i #
+s0 0 sr 0 R
+s0 1 sr 1 R
+s0 o sr o R
+s0 i sr i R
+s0 # s1 # R
+s0 _ sr _ R
+s1 0 s2 o R
+s1 1 s3 i R
+s1 o s1 o R
+s1 i s1 i R
+s1 # sa # R
+s1 _ sr _ R
+s2 0 s2 0 R
+s2 1 s2 1 R
+s2 o sr o R
+s2 i sr i R
+s2 # s4 # R
+s2 _ sr _ R
+s3 0 s3 0 R
+s3 1 s3 1 R
+s3 o sr o R
+s3 i sr i R
+s3 # s5 # R
+s3 _ sr _ R
+s4 0 s8 o L
+s4 1 s11 1 L
+s4 o s6 o R
+s4 i s6 i R
+s4 # s4 # R
+s4 _ sr _ R
+s5 0 s11 0 L
+s5 1 s8 i L
+s5 o s7 o R
+s5 i s7 i R
+s5 # s5 # R
+s5 _ sr _ R
+s6 0 s8 o L
+s6 1 s11 1 L
+s6 o s6 o R
+s6 i s6 i R
+s6 # sr # R
+s6 _ sr _ R
+s7 0 s11 0 L
+s7 1 s8 i L
+s7 o s7 o R
+s7 i s7 i R
+s7 # sr # R
+s7 _ sr _ R
+s8 0 sr 0 R
+s8 1 sr 1 R
+s8 o s8 o L
+s8 i s8 i L
+s8 # s9 # L
+s8 _ sr _ R
+s9 0 s10 0 L
+s9 1 s10 1 L
+s9 o sa o R
+s9 i sa i R
+s9 # s9 # L
+s9 _ sr _ R
+s10 0 s10 0 L
+s10 1 s10 1 L
+s10 o s1 o R
+s10 i s1 i R
+s10 # sr # R
+s10 _ sr _ R
+s11 0 sr 0 R
+s11 1 sr 1 R
+s11 o s11 0 L
+s11 i s11 1 L
+s11 # s12 # R
+s11 _ sr _ R
+s12 0 s13 # L
+s12 1 s13 # L
+s12 o sr o R
+s12 i sr i R
+s12 # sr # R
+s12 _ sr _ R
+s13 0 s14 0 L
+s13 1 s14 1 L
+s13 o s14 0 L
+s13 i s14 1 L
+s13 # s13 # L
+s13 _ sr _ R
+s14 0 s14 0 L
+s14 1 s14 1 L
+s14 o s14 0 L
+s14 i s14 1 L
+s14 # s1 # R
+s14 _ sr _ R
