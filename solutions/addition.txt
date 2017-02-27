@@ -1,4 +1,4 @@
-states 29
+states 32
 s0
 s1
 s10
@@ -17,6 +17,9 @@ s22
 s23
 s24
 s25
+s26
+s27
+s28
 s30
 s31
 s32
@@ -47,29 +50,29 @@ s10 0 s10 0 R
 s10 1 s10 1 R
 s10 o sr o R
 s10 i sr i R
-s10 # s12 # R
+s10 # s26 # R
 s10 & sr & R
 s10 _ sr _ R
 s11 0 s11 0 R
 s11 1 s11 1 R
 s11 o sr o R
 s11 i sr i R
-s11 # s13 # R
+s11 # s27 # R
 s11 & sr & R
 s11 _ sr _ R
 s12 0 s14 o R
 s12 1 s15 i R
 s12 o s12 o R
 s12 i s12 i R
-s12 # sr # R
-s12 & sr # R
+s12 # s18 # R
+s12 & s22 # R
 s12 _ sr _ R
 s13 0 s16 o R
 s13 1 s17 i R
 s13 o s13 o R
 s13 i s13 i R
-s13 # sr # R
-s13 & sr & R
+s13 # s20 # R
+s13 & s24 & R
 s13 _ sr _ R
 s14 0 s14 0 R
 s14 1 s14 1 R
@@ -101,8 +104,8 @@ s17 & s25 & R
 s17 _ sr _ R
 s18 0 s30 o L
 s18 1 sr 1 R
-s18 o s18 o R
-s18 i s18 i R
+s18 o s28 o R
+s18 i s28 i R
 s18 # sr # R
 s18 & sr & R
 s18 _ sr _ R
@@ -155,6 +158,27 @@ s25 i s25 i R
 s25 # sr # R
 s25 & sr & R
 s25 _ sr _ R
+s26 0 s14 o R
+s26 1 s15 i R
+s26 o s12 o R
+s26 i s12 i R
+s26 # sr # R
+s26 & sr & R
+s26 _ sr _ R
+s27 0 s16 o R
+s27 1 s17 i R
+s27 o s13 o R
+s27 i s13 i R
+s27 # sr # R
+s27 & sr & R
+s27 _ sr _ R
+s28 0 s30 o L
+s28 1 sr 1 R
+s28 o s28 o R
+s28 i s28 i R
+s28 # sr # R
+s28 & sr & R
+s28 _ s30 _ L
 s30 0 s30 0 L
 s30 1 s30 1 L
 s30 o s30 o L

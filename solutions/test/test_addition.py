@@ -2,6 +2,7 @@ from solutions.test.utils import parse_solution, assert_accepts, assert_rejects
 
 ACCEPTED_INPUTS = [
     '0#0#0', '0#1#1', '1#0#1', '1#1#01', '001#010#0110000', '11#11#011', '11#11#011000',
+    '0#11#11', '1#01#11', '11#0#11', '01#1#11', '01#1#11', '00#10#1', '00#00#0',
 ]
 
 REJECTED_INPUTS = [
