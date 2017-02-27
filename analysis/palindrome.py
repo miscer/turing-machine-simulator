@@ -11,9 +11,6 @@ INPUT_GENERATORS = [
     # ab aab aaab ...
     (('a' * n) + 'b' for n in count(start=1)),
 
-    # ab aba aaba aabaa aaabaa aaabaaa ...
-    (('a' * floor(n)) + 'ab' + ('a' * ceil(n)) for n in count(start=0, step=0.5)),
-
     # a aa aaa aaaa ...
     ('a' * n for n in count(start=1)),
 ]
