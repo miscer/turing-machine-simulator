@@ -99,7 +99,7 @@ s13 0 s14 0 L
 s13 1 s14 1 L
 s13 o s14 0 L
 s13 i s14 1 L
-s13 # s13 # L
+s13 # s13 # L
 s13 _ sr _ R
 s14 0 s14 0 L
 s14 1 s14 1 L

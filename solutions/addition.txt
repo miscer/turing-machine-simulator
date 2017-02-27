@@ -1,4 +1,4 @@
-states 27
+states 28
 s0
 s10
 s11
@@ -24,6 +24,7 @@ s51
 s52
 s53
 s54
+s55
 sa +
 sr -
 alphabet 6 0 1 o i # &
@@ -174,7 +175,7 @@ s50 i s50 i R
 s50 # s51 # R
 s50 & s52 & R
 s50 _ sr _ R
-s51 0 s54 0 R
+s51 0 s54 o R
 s51 1 sr 1 R
 s51 o s51 o R
 s51 i s51 i R
@@ -183,12 +184,12 @@ s51 & sr & R
 s51 _ sa _ R
 s52 0 sr 0 R
 s52 1 s53 i R
-s52 o s51 o R
-s52 i s51 i R
+s52 o s52 o R
+s52 i s52 i R
 s52 # sr # R
 s52 & sr & R
 s52 _ sr _ R
-s53 0 sr 0 R
+s53 0 s55 o R
 s53 1 sr 1 R
 s53 o sr o R
 s53 i sr i R
@@ -202,3 +203,10 @@ s54 i sr i R
 s54 # sr # R
 s54 & sr & R
 s54 _ sa _ R
+s55 0 s55 o R
+s55 1 sr 1 R
+s55 o sr o R
+s55 i sr i R
+s55 # sr # R
+s55 & sr & R
+s55 _ sa _ R
