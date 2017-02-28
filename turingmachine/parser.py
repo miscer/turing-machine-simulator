@@ -152,8 +152,12 @@ def parse_transition_table(file: TextIO, states: Set[State], alphabet: Set[Alpha
     table_rows_count = (len(states) - 2) * (len(alphabet) + 1)
 
     for _ in range(table_rows_count):
+        line = file.readline()
+
+        if not line:
+            raise ParseError('Missing rows in the transition table')
+
         try:
-            line = file.readline()
             in_state, in_letter, out_state, out_letter, direction = line.split()
         except ValueError:
             raise ParseError('Invalid transition table row: {}'.format(line))
