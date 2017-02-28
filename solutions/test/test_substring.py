@@ -1,11 +1,29 @@
 from solutions.test.utils import parse_solution, assert_accepts, assert_rejects
 
 ACCEPTED_INPUTS = [
-    '###', '##0101#', '#0#0#', '#1#1#', '#0101#0101#', '#110#1110#',
+    # Both strings empty
+    '###',
+
+    # Needle string empty
+    '##0101#',
+
+    # Both strings are equal
+    '#0#0#',
+    '#1#1#',
+    '#0101#0101#',
+
+    # Part of needle string occurrs in the haystack string more than once
+    '#110#1110#',
+    '#101#100101#',
 ]
 
 REJECTED_INPUTS = [
-    '#01##', '#01#0#', '#0#111#',
+    # Empty haystack string
+    '#01##',
+
+    # Needle string not in haystack string
+    '#01#0#',
+    '#0#111#',
 ]
 
 

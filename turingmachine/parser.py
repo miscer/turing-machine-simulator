@@ -10,6 +10,12 @@ class ParseError(Exception):
 
 
 def parse_direction(direction: str) -> Direction:
+    """
+    Parses a string containing either 'L' or 'R' into a direction.
+
+    :param direction: Direction string
+    :return: Direction value
+    """
     if direction == 'L':
         return Direction.left
     elif direction == 'R':
@@ -19,6 +25,13 @@ def parse_direction(direction: str) -> Direction:
 
 
 def parse_letter(letter: str, alphabet: Set[AlphabetLetter]) -> TapeLetter:
+    """
+    Parses a letter and verifies that it exists in the alphabet. Converts _ to None.
+
+    :param letter: Letter string
+    :param alphabet: Set of allowed letters
+    :return: Letter value, or None
+    """
     if letter == '_':
         return None
     elif letter in alphabet:
@@ -28,6 +41,12 @@ def parse_letter(letter: str, alphabet: Set[AlphabetLetter]) -> TapeLetter:
 
 
 def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
+    """
+    Parses a list of states, identifies the start, accept and reject states.
+
+    :param file: File to read from
+    :return: Accept state, reject state, start state, set of all states
+    """
     accept_state = None
     reject_state = None
     start_state = None
@@ -87,6 +106,12 @@ def parse_states(file: TextIO) -> Tuple[State, State, State, Set[State]]:
 
 
 def parse_alphabet(file: TextIO) -> Set[AlphabetLetter]:
+    """
+    Parses a list of letters in an alphabet.
+
+    :param file: File to read from
+    :return: Set of letters in the alphabet
+    """
     alphabet = set()
 
     try:
@@ -115,6 +140,14 @@ def parse_alphabet(file: TextIO) -> Set[AlphabetLetter]:
 
 
 def parse_transition_table(file: TextIO, states: Set[State], alphabet: Set[AlphabetLetter]) -> TransitionTable:
+    """
+    Parses a transition table, verifying that all states and letters are valid.
+
+    :param file: File to read from
+    :param states: Set of valid states
+    :param alphabet: Set of valid letters
+    :return: Transition table
+    """
     transition_table = {}
     table_rows_count = (len(states) - 2) * (len(alphabet) + 1)
 
@@ -137,6 +170,12 @@ def parse_transition_table(file: TextIO, states: Set[State], alphabet: Set[Alpha
 
 
 def parse_turing_machine(file: TextIO) -> TuringMachine:
+    """
+    Parses a Turing machine from the file.
+
+    :param file: File to read from
+    :return: Turing machine
+    """
     accept_state, reject_state, start_state, all_states = parse_states(file)
     alphabet = parse_alphabet(file)
     transition_table = parse_transition_table(file, all_states, alphabet)

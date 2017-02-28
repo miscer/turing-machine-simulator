@@ -1,10 +1,21 @@
 from solutions.test.utils import parse_solution, assert_accepts, assert_rejects
 
 ACCEPTED_INPUTS = [
-    '', 'a', 'aa', 'aba', 'abba',
+    # Empty string
+    '',
+
+    # Single letter
+    'a',
+
+    # Even number of letters
+    'aa', 'abba',
+
+    # Odd number of letters
+    'aba', 'ababa',
 ]
 
 REJECTED_INPUTS = [
+    # Not palindromes
     'ab', 'aab', 'aaba',
 ]
 

@@ -11,6 +11,12 @@ FIXTURES_DIR = os.path.join(os.path.dirname(__file__), 'fixtures')
 
 
 def open_mock_file(lines):
+    """
+    Creates a mock file containing the specified lines.
+
+    :param lines: List of lines for the file
+    :return: Mock open file
+    """
     file_content = '\n'.join(lines)
     open = mock_open(read_data=file_content)
     return open()
@@ -33,9 +39,6 @@ def test_parse_letter():
 
 
 def test_parse_states():
-    def open_fixture(name):
-        return open(os.path.join(FIXTURES_DIR, '{}.txt'.format(name)))
-
     with open_mock_file(['states 4', 'q0', 'q1', 'qa +', 'qr -']) as file:
         assert parse_states(file) == ('qa', 'qr', 'q0', {'q0', 'q1', 'qa', 'qr'})
 
